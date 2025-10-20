@@ -74,7 +74,7 @@ export default function FinalResults({ sessionId, name, gender, generatedProfile
   const [showingPayment, setShowingPayment] = useState(false);
 
   const revealImage = useMemo(() => {
-    const targetImages = gender === "masculino" ? womenImages : menImages;
+    const targetImages = gender.toLowerCase() === "masculino" ? womenImages : menImages;
     const randomIndex = Math.floor(Math.random() * targetImages.length);
     return targetImages[randomIndex];
   }, [gender]);

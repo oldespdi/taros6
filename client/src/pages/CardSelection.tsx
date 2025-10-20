@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { MysticalBackground } from "@/components/MysticalBackground";
 import { tarotCards } from "@shared/schema";
 import logoUrl from "@assets/generated_images/ReveLove.IA_logo_icon_b45fe28f.png";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Heart, Sun, Moon, Star } from "lucide-react";
 
 interface CardSelectionProps {
   questionNumber: number;
@@ -54,61 +54,73 @@ export default function CardSelection({ questionNumber, totalQuestions, onCardsS
             {tarotCards.map((card) => {
               const isSelected = selectedCards.includes(card.id);
               return (
-                <button
+                <div
                   key={card.id}
-                  onClick={() => toggleCard(card.id)}
-                  className={`relative aspect-[2/3] transition-all duration-300 ${
-                    isSelected 
-                      ? "scale-105" 
-                      : "hover:scale-105"
-                  }`}
+                  className="relative aspect-[2/3]"
                   style={{ perspective: '1000px' }}
-                  data-testid={`card-${card.id}`}
                 >
-                  <div 
-                    className={`relative w-full h-full transition-transform duration-700 ${
-                      isSelected ? '[transform:rotateY(180deg)]' : ''
+                  <button
+                    onClick={() => toggleCard(card.id)}
+                    className={`relative w-full h-full transition-all duration-500 ${
+                      isSelected ? 'scale-105' : 'hover:scale-105'
                     }`}
-                    style={{ transformStyle: 'preserve-3d' }}
+                    style={{ 
+                      transformStyle: 'preserve-3d',
+                      transform: isSelected ? 'rotateY(180deg)' : 'rotateY(0deg)'
+                    }}
+                    data-testid={`card-${card.id}`}
                   >
-                    {/* Verso da carta */}
+                    {/* Verso da carta (visível inicialmente) */}
                     <div 
-                      className={`absolute inset-0 rounded-lg overflow-hidden ${
-                        isSelected ? '' : 'hover-elevate'
+                      className={`absolute inset-0 w-full h-full rounded-lg ${
+                        !isSelected ? 'hover-elevate' : ''
                       }`}
                       style={{ backfaceVisibility: 'hidden' }}
                     >
-                      <div className="w-full h-full bg-gradient-to-br from-amber-900/90 via-amber-800/80 to-amber-950/90 border-4 border-amber-600/50 rounded-lg flex items-center justify-center p-4">
-                        <div className="relative w-full h-full flex items-center justify-center">
-                          {/* Padrão decorativo do verso */}
-                          <div className="absolute inset-0 opacity-20">
-                            <div className="absolute top-4 left-4 w-8 h-8 border-2 border-amber-300 rounded-full"></div>
-                            <div className="absolute top-4 right-4 w-8 h-8 border-2 border-amber-300 rounded-full"></div>
-                            <div className="absolute bottom-4 left-4 w-8 h-8 border-2 border-amber-300 rounded-full"></div>
-                            <div className="absolute bottom-4 right-4 w-8 h-8 border-2 border-amber-300 rounded-full"></div>
-                          </div>
-                          {/* Símbolo central */}
-                          <div className="relative z-10 flex flex-col items-center gap-2">
-                            <div className="w-16 h-16 md:w-20 md:h-20 relative">
-                              <svg viewBox="0 0 100 100" className="w-full h-full fill-amber-300/80">
-                                <path d="M50,30 C35,30 30,40 30,50 C30,65 50,80 50,80 C50,80 70,65 70,50 C70,40 65,30 50,30 Z" />
-                                <circle cx="50" cy="25" r="8" className="fill-amber-200/60" />
-                                <circle cx="35" cy="55" r="6" className="fill-amber-200/60" />
-                                <circle cx="65" cy="55" r="6" className="fill-amber-200/60" />
-                              </svg>
+                      <div className="w-full h-full bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950 border-2 border-amber-600/40 rounded-lg shadow-xl relative overflow-hidden">
+                        {/* Padrão de fundo */}
+                        <div className="absolute inset-0 opacity-10">
+                          <div className="absolute inset-0" style={{
+                            backgroundImage: 'radial-gradient(circle at 2px 2px, rgb(251 191 36 / 0.3) 1px, transparent 0)',
+                            backgroundSize: '20px 20px'
+                          }}></div>
+                        </div>
+                        
+                        {/* Ornamentos nos cantos */}
+                        <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-amber-500/60 rounded-tl"></div>
+                        <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-amber-500/60 rounded-tr"></div>
+                        <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-amber-500/60 rounded-bl"></div>
+                        <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-amber-500/60 rounded-br"></div>
+                        
+                        {/* Centro com coração e símbolos */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="relative">
+                            {/* Símbolos ao redor */}
+                            <div className="absolute -top-8 left-1/2 -translate-x-1/2">
+                              <Sun className="w-4 h-4 text-amber-400/70" />
                             </div>
-                            <div className="flex gap-2">
-                              <Sparkles className="w-3 h-3 text-amber-300/60" />
-                              <Sparkles className="w-3 h-3 text-amber-300/60" />
+                            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2">
+                              <Moon className="w-4 h-4 text-amber-400/70" />
+                            </div>
+                            <div className="absolute top-1/2 -left-8 -translate-y-1/2">
+                              <Star className="w-3 h-3 text-amber-400/70" />
+                            </div>
+                            <div className="absolute top-1/2 -right-8 -translate-y-1/2">
+                              <Star className="w-3 h-3 text-amber-400/70" />
+                            </div>
+                            
+                            {/* Coração central */}
+                            <div className="bg-gradient-to-br from-amber-600 to-amber-800 p-6 rounded-full shadow-lg">
+                              <Heart className="w-10 h-10 text-amber-200 fill-amber-200" />
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* Frente da carta */}
+                    {/* Frente da carta (visível quando selecionada) */}
                     <div 
-                      className="absolute inset-0 rounded-lg overflow-hidden"
+                      className="absolute inset-0 w-full h-full rounded-lg overflow-hidden"
                       style={{ 
                         backfaceVisibility: 'hidden',
                         transform: 'rotateY(180deg)'
@@ -124,15 +136,15 @@ export default function CardSelection({ questionNumber, totalQuestions, onCardsS
                         />
                         {isSelected && (
                           <div className="absolute inset-0 bg-primary/20 flex items-center justify-center rounded-lg">
-                            <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-lg">
+                            <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-lg shadow-lg">
                               {selectedCards.indexOf(card.id) + 1}
                             </div>
                           </div>
                         )}
                       </div>
                     </div>
-                  </div>
-                </button>
+                  </button>
+                </div>
               );
             })}
           </div>

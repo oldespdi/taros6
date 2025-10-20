@@ -61,7 +61,7 @@ export default function CardSelection({ questionNumber, totalQuestions, onCardsS
                 >
                   <button
                     onClick={() => toggleCard(card.id)}
-                    className={`relative w-full h-full transition-all duration-500 ${
+                    className={`relative w-full h-full transition-all duration-700 ${
                       isSelected ? 'scale-105' : 'hover:scale-105'
                     }`}
                     style={{ 
@@ -72,12 +72,15 @@ export default function CardSelection({ questionNumber, totalQuestions, onCardsS
                   >
                     {/* Verso da carta (visível inicialmente) */}
                     <div 
-                      className={`absolute inset-0 w-full h-full rounded-lg ${
+                      className={`absolute inset-0 w-full h-full ${
                         !isSelected ? 'hover-elevate' : ''
                       }`}
-                      style={{ backfaceVisibility: 'hidden' }}
+                      style={{ 
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden'
+                      }}
                     >
-                      <div className="w-full h-full bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950 border-2 border-amber-600/40 rounded-lg shadow-xl relative overflow-hidden">
+                      <div className="w-full h-full bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950 border-2 border-amber-600/40 rounded-lg shadow-xl relative">
                         {/* Padrão de fundo */}
                         <div className="absolute inset-0 opacity-10">
                           <div className="absolute inset-0" style={{
@@ -120,22 +123,24 @@ export default function CardSelection({ questionNumber, totalQuestions, onCardsS
 
                     {/* Frente da carta (visível quando selecionada) */}
                     <div 
-                      className="absolute inset-0 w-full h-full rounded-lg overflow-hidden"
+                      className="absolute inset-0 w-full h-full"
                       style={{ 
                         backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
                         transform: 'rotateY(180deg)'
                       }}
                     >
-                      <div className={`relative w-full h-full ${
-                        isSelected ? 'ring-4 ring-primary shadow-lg shadow-primary/50' : ''
-                      }`}>
+                      <div className="relative w-full h-full rounded-lg overflow-hidden">
                         <img 
                           src={card.imageUrl} 
                           alt={card.name}
-                          className="w-full h-full object-cover rounded-lg"
+                          className={`w-full h-full object-cover ${
+                            isSelected ? 'ring-4 ring-primary shadow-lg shadow-primary/50' : ''
+                          }`}
+                          style={{ borderRadius: '0.5rem' }}
                         />
                         {isSelected && (
-                          <div className="absolute inset-0 bg-primary/20 flex items-center justify-center rounded-lg">
+                          <div className="absolute inset-0 bg-primary/20 flex items-center justify-center">
                             <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-lg shadow-lg">
                               {selectedCards.indexOf(card.id) + 1}
                             </div>

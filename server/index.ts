@@ -6,6 +6,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Serve attached assets (images, etc.)
+import path from "path";
+app.use("/attached_assets", express.static(path.resolve(import.meta.dirname, "..", "attached_assets")));
+
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;

@@ -4,3 +4,7 @@ dist
 server/public
 vite.config.ts.*
 *.tar.gz
+
+# Uploads (user generated files - não versionar em produção)
+attached_assets/uploads/*
+!attached_assets/uploads/.gitkeep

@@ -231,7 +231,7 @@ export default function FinalResults({ sessionId, name, generatedProfile, isPaid
 
                 <div className="bg-card/80 backdrop-blur-sm rounded-xl p-6 text-center">
                   <div className="text-3xl font-bold text-primary mb-2">
-                    Desbloqueie por R$10,00
+                    Desbloqueie por R$50,00
                   </div>
                   <Button 
                     onClick={onUnlock}

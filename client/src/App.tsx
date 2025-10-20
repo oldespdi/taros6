@@ -225,24 +225,6 @@ function App() {
     }
   };
 
-  const handleSimulatePayment = async () => {
-    if (!sessionData) return;
-    
-    try {
-      await apiRequest("POST", `/api/sessions/${sessionData.id}/simulate-payment`, {});
-      toast({
-        title: "Pagamento simulado!",
-        description: "Verificando confirmação...",
-      });
-    } catch (error) {
-      toast({
-        title: "Erro",
-        description: "Não foi possível simular o pagamento.",
-        variant: "destructive",
-      });
-    }
-  };
-
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -327,7 +309,6 @@ function App() {
             pixCode={sessionData.paymentData.pixCode}
             amount={50.00}
             onPaymentConfirmed={handlePaymentConfirmed}
-            onSimulatePayment={handleSimulatePayment}
           />
         )}
         

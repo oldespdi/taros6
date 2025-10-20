@@ -162,11 +162,27 @@ export default function FinalResults({ sessionId, name, generatedProfile, isPaid
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-4 mb-6">
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} className="aspect-square rounded-lg overflow-hidden bg-muted/50">
-                      <div className="w-full h-full bg-gradient-to-br from-primary/20 to-chart-2/20" />
-                    </div>
-                  ))}
+                  <div className="aspect-square rounded-lg overflow-hidden bg-muted/50">
+                    <img 
+                      src="/attached_assets/image_1760967624741.png" 
+                      alt="Depoimento WhatsApp 1"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="aspect-square rounded-lg overflow-hidden bg-muted/50">
+                    <img 
+                      src="/attached_assets/image_1760967630543.png" 
+                      alt="Depoimento WhatsApp 2"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="aspect-square rounded-lg overflow-hidden bg-muted/50">
+                    <img 
+                      src="/attached_assets/image_1760967636121.png" 
+                      alt="Depoimento WhatsApp 3"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
 
                 <div className="text-center mb-6">

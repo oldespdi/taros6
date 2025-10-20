@@ -203,8 +203,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const response = await fetch(`${PUSHINPAY_API_URL}/pix/cashIn`, {
         method: "POST",
         headers: {
-          "Authorization": process.env.PUSHINPAY_TOKEN,
+          "Authorization": `Bearer ${process.env.PUSHINPAY_TOKEN}`,
           "Content-Type": "application/json",
+          "Accept": "application/json",
         },
         body: JSON.stringify({
           value: amount,

@@ -5,6 +5,12 @@ server/public
 vite.config.ts.*
 *.tar.gz
 
+# Variáveis de ambiente e secrets - NUNCA commitar!
+.env
+.env.local
+.env.production
+.env.development
+
 # Uploads (user generated files - não versionar em produção)
 attached_assets/uploads/*
 !attached_assets/uploads/.gitkeep

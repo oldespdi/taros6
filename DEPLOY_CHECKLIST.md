@@ -11,9 +11,23 @@
 
 ## ✨ Seu projeto está pronto para o Render!
 
+### 🔐 Antes de Commitar - IMPORTANTE!
+
+**Verifique que não há tokens no código:**
+
+```bash
+# Verificar se .env está protegido
+grep -q "^\.env$" .gitignore && echo "✅ .env protegido" || echo "❌ ATENÇÃO!"
+
+# Ver o que será commitado
+git status
+```
+
+⚠️ **NUNCA commite arquivos .env com tokens reais!**
+
 ### Próximos Passos
 
-1. **Commitar as alterações**
+1. **Commitar as alterações (sem tokens!)**
    ```bash
    git add .
    git commit -m "Configurar projeto para deploy no Render"
@@ -36,7 +50,14 @@
    - **Start Command:** `npm start`
    - **Plan:** Free (ou escolha um plano pago)
 
-5. **Deploy!**
+5. **⚠️ IMPORTANTE: Configurar Token da Pushin Pay**
+   - Vá em **"Environment"** (menu lateral)
+   - Clique em **"Add Environment Variable"**
+   - Key: `PUSHINPAY_TOKEN`
+   - Value: [Seu token da Pushin Pay]
+   - Clique em "Save Changes"
+
+6. **Deploy!**
    - Clique em "Create Web Service"
    - Aguarde o build (3-5 minutos)
    - Acesse sua aplicação na URL fornecida

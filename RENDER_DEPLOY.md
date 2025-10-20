@@ -46,11 +46,22 @@ O Render configura automaticamente:
 - `PORT` - Porta do servidor (gerada automaticamente)
 - `NODE_ENV` - Definido como `production`
 
-**Variáveis adicionais (se necessário):**
+**⚠️ IMPORTANTE - Configurar Token da Pushin Pay:**
 
-Se você precisar configurar variáveis de ambiente adicionais (como chaves de API), adicione-as na seção "Environment" do painel do Render:
+Este projeto usa a API da Pushin Pay para pagamentos PIX. Você **PRECISA** configurar o token:
 
-- Exemplo: `API_KEY=sua_chave_aqui`
+1. No painel do seu Web Service no Render, vá em **"Environment"**
+2. Clique em **"Add Environment Variable"**
+3. Adicione:
+   - **Key:** `PUSHINPAY_TOKEN`
+   - **Value:** [Seu token da Pushin Pay - obtido no dashboard deles]
+4. Clique em **"Save Changes"**
+
+O Render fará redeploy automaticamente com a variável configurada.
+
+**Outras variáveis (se necessário):**
+- `DATABASE_URL` - Para PostgreSQL
+- `CLOUDINARY_URL` - Para uploads de imagens
 
 ### 5. Deploy
 

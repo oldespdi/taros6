@@ -12,9 +12,10 @@ interface PaymentPixProps {
   pixCode: string;
   amount: number;
   onPaymentConfirmed: () => void;
+  onSimulatePayment?: () => void;
 }
 
-export default function PaymentPix({ qrCode, qrCodeBase64, pixCode, amount, onPaymentConfirmed }: PaymentPixProps) {
+export default function PaymentPix({ qrCode, qrCodeBase64, pixCode, amount, onPaymentConfirmed, onSimulatePayment }: PaymentPixProps) {
   const [copied, setCopied] = useState(false);
   const [checking, setChecking] = useState(false);
   const { toast } = useToast();
@@ -128,6 +129,18 @@ export default function PaymentPix({ qrCode, qrCodeBase64, pixCode, amount, onPa
                   />
                 ))}
               </div>
+
+              {onSimulatePayment && (
+                <Button
+                  onClick={onSimulatePayment}
+                  variant="outline"
+                  size="sm"
+                  className="mt-4 text-xs"
+                  data-testid="button-simulate-payment"
+                >
+                  [TESTE] Simular Pagamento
+                </Button>
+              )}
             </div>
           </div>
         </Card>

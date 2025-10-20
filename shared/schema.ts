@@ -67,42 +67,42 @@ export const tarotCards: TarotCard[] = [
   {
     id: 0,
     name: "The Sun (O Sol)",
-    imageUrl: "/assets/generated_images/The_Sun_tarot_card_a7e1dfec.png",
+    imageUrl: "/attached_assets/generated_images/The_Sun_tarot_card_a7e1dfec.png",
     meaning: "Indica que essa pessoa trará alegria e luz para a vida da pessoa. Um relacionamento cheio de otimismo, honestidade e crescimento.",
     loveReading: "A alma gêmea virá de uma forma que ilumina e aquece conexão será clara e luminosa."
   },
   {
     id: 1,
     name: "Temperance (Temperança)",
-    imageUrl: "/assets/generated_images/Temperance_tarot_card_6aae0f05.png",
+    imageUrl: "/attached_assets/generated_images/Temperance_tarot_card_6aae0f05.png",
     meaning: "Essa relação vai exigir equilíbrio, mas terá grande potencial de harmonia. A alma gêmea trará equilíbrio, mas ela grande potencial de se desenvolver espiritualmente.",
     loveReading: "Alma gêmea calma e acolhedora."
   },
   {
     id: 2,
     name: "The Emperor (O Imperador)",
-    imageUrl: "/assets/generated_images/The_Emperor_tarot_card_1f7095ef.png",
+    imageUrl: "/attached_assets/generated_images/The_Emperor_tarot_card_1f7095ef.png",
     meaning: "O parceiro será confiável e maduro, pessoa trará estabilidade e segurança, ajudando a construir uma base sólida para a relação.",
     loveReading: "Alma gêmea que te inspira evolução."
   },
   {
     id: 3,
     name: "The Lovers (Os Amantes)",
-    imageUrl: "/assets/generated_images/The_Lovers_tarot_card_bcb3286f.png",
+    imageUrl: "/attached_assets/generated_images/The_Lovers_tarot_card_bcb3286f.png",
     meaning: "Uma parceria de alma forte, com profunda conexão emocional e espiritual. O amor verdadeiro e autêntico.",
     loveReading: "Um amor com propósito divino."
   },
   {
     id: 4,
     name: "The Star (A Estrela)",
-    imageUrl: "/assets/generated_images/The_Star_tarot_card_20cfae50.png",
+    imageUrl: "/attached_assets/generated_images/The_Star_tarot_card_20cfae50.png",
     meaning: "Esperança renovada no amor. Essa pessoa trará cura e inspiração para a vida da pessoa.",
     loveReading: "Alma gêmea que renova a esperança."
   },
   {
     id: 5,
     name: "The Moon (A Lua)",
-    imageUrl: "/assets/generated_images/The_Moon_tarot_card_ddae9592.png",
+    imageUrl: "/attached_assets/generated_images/The_Moon_tarot_card_ddae9592.png",
     meaning: "Conexão intuitiva e profunda. O relacionamento terá camadas emocionais complexas, mas muito intensas.",
     loveReading: "Amor misterioso e profundo."
   }

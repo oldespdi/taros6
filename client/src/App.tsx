@@ -295,6 +295,7 @@ function App() {
           <FinalResults
             sessionId={sessionData.id}
             name={sessionData.name}
+            gender={sessionData.gender}
             generatedProfile={sessionData.generatedProfile}
             isPaid={sessionData.isPaid}
             onUnlock={handleUnlock}

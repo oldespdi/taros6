@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { MysticalBackground } from "@/components/MysticalBackground";
@@ -9,11 +9,18 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import logoUrl from "@assets/generated_images/ReveLove.IA_logo_icon_b45fe28f.png";
-import { Heart, Sparkles, Lock, CheckCircle2, Star } from "lucide-react";
+import woman1 from "@assets/reveal_images/women/woman1.png";
+import woman2 from "@assets/reveal_images/women/woman2.png";
+import woman3 from "@assets/reveal_images/women/woman3.png";
+import man1 from "@assets/reveal_images/men/man1.png";
+import man2 from "@assets/reveal_images/men/man2.png";
+import man3 from "@assets/reveal_images/men/man3.png";
+import { Heart, Sparkles, Lock, CheckCircle2, Star, Download } from "lucide-react";
 
 interface FinalResultsProps {
   sessionId: string;
   name: string;
+  gender: string;
   generatedProfile: {
     title: string;
     description: string;
@@ -60,8 +67,24 @@ const faqs = [
   }
 ];
 
-export default function FinalResults({ sessionId, name, generatedProfile, isPaid, onUnlock }: FinalResultsProps) {
+const womenImages = [woman1, woman2, woman3];
+const menImages = [man1, man2, man3];
+
+export default function FinalResults({ sessionId, name, gender, generatedProfile, isPaid, onUnlock }: FinalResultsProps) {
   const [showingPayment, setShowingPayment] = useState(false);
+
+  const revealImage = useMemo(() => {
+    const targetImages = gender === "masculino" ? womenImages : menImages;
+    const randomIndex = Math.floor(Math.random() * targetImages.length);
+    return targetImages[randomIndex];
+  }, [gender]);
+
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = revealImage;
+    link.download = 'meu-futuro-amor.png';
+    link.click();
+  };
 
   return (
     <div className="min-h-screen relative py-6 sm:py-8 md:py-12 px-3 sm:px-4">
@@ -99,9 +122,18 @@ export default function FinalResults({ sessionId, name, generatedProfile, isPaid
           <div className="grid md:grid-cols-[300px_1fr] gap-6 sm:gap-8 mb-6 sm:mb-8">
             <div className="relative">
               <div className={`aspect-square rounded-2xl overflow-hidden ${!isPaid ? 'filter blur-xl' : ''}`}>
-                <div className="w-full h-full bg-gradient-to-br from-primary/30 to-chart-2/30 flex items-center justify-center">
-                  <Heart className="w-24 h-24 sm:w-32 sm:h-32 text-primary/30" fill="currentColor" />
-                </div>
+                {isPaid ? (
+                  <img 
+                    src={revealImage} 
+                    alt="Seu Futuro Amor"
+                    className="w-full h-full object-cover"
+                    data-testid="img-reveal"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-primary/30 to-chart-2/30 flex items-center justify-center">
+                    <Heart className="w-24 h-24 sm:w-32 sm:h-32 text-primary/30" fill="currentColor" />
+                  </div>
+                )}
               </div>
               
               {!isPaid && (
@@ -115,11 +147,13 @@ export default function FinalResults({ sessionId, name, generatedProfile, isPaid
               
               {isPaid && (
                 <Button 
+                  onClick={handleDownload}
                   size="sm" 
                   variant="outline" 
                   className="w-full mt-3 sm:mt-4"
                   data-testid="button-download"
                 >
+                  <Download className="w-4 h-4 mr-2" />
                   Baixar Imagem
                 </Button>
               )}

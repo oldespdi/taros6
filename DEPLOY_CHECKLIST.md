@@ -46,7 +46,7 @@ git status
 4. **Configurar o serviço**
    - **Name:** revelove-ia (ou nome de sua escolha)
    - **Runtime:** Node
-   - **Build Command:** `npm install && npm run build`
+   - **Build Command:** `npm install --include=dev && npm run build`
    - **Start Command:** `npm start`
    - **Plan:** Free (ou escolha um plano pago)
 

@@ -49,7 +49,7 @@ Preencha os campos:
 | **Region** | Oregon (US West) ou mais próximo |
 | **Branch** | `main` |
 | **Runtime** | `Node` |
-| **Build Command** | `npm install && npm run build` |
+| **Build Command** | `npm install --include=dev && npm run build` |
 | **Start Command** | `npm start` |
 
 ### 4️⃣ Escolher o Plano

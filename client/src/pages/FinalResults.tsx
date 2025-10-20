@@ -64,51 +64,51 @@ export default function FinalResults({ sessionId, name, generatedProfile, isPaid
   const [showingPayment, setShowingPayment] = useState(false);
 
   return (
-    <div className="min-h-screen relative py-12 px-4">
+    <div className="min-h-screen relative py-6 sm:py-8 md:py-12 px-3 sm:px-4">
       <MysticalBackground />
       
-      <div className="relative z-10 max-w-4xl mx-auto space-y-8 animate-fade-in">
+      <div className="relative z-10 max-w-4xl mx-auto space-y-6 sm:space-y-8 animate-fade-in">
         <div className="text-center">
           <img 
             src={logoUrl} 
             alt="ReveLove.IA" 
-            className="w-16 h-16 mx-auto mb-4"
+            className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4"
             data-testid="img-logo"
           />
-          <div className="inline-flex items-center gap-2 bg-primary/20 text-primary px-4 py-2 rounded-full mb-4" data-testid="badge-status">
-            <Sparkles className="w-4 h-4" />
-            <span className="text-sm font-medium">Seu Futuro Amor Revelado</span>
+          <div className="inline-flex items-center gap-2 bg-primary/20 text-primary px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-3 sm:mb-4" data-testid="badge-status">
+            <Sparkles className="w-3 h-3 sm:w-4 sm:h-4" />
+            <span className="text-xs sm:text-sm font-medium">Seu Futuro Amor Revelado</span>
           </div>
-          <h1 className="text-3xl md:text-5xl font-serif font-bold text-foreground mb-4" data-testid="heading-greeting">
-            Olá, {name}! <Heart className="inline w-8 h-8 text-primary" fill="currentColor" />
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-serif font-bold text-foreground mb-3 sm:mb-4 px-2" data-testid="heading-greeting">
+            Olá, {name}! <Heart className="inline w-6 h-6 sm:w-8 sm:h-8 text-primary" fill="currentColor" />
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-description">
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-2" data-testid="text-description">
             Essa leitura foi feita baseando-se em sua essência e energia. A conexão cósmica está 
             pronta para lhe revelar o que você tanto procura!
           </p>
         </div>
 
-        <Card className="backdrop-blur-xl bg-card/60 border-primary/20 p-8">
-          <div className="flex items-start gap-2 mb-6 text-primary">
-            <Sparkles className="w-5 h-5 mt-1 flex-shrink-0" />
-            <h2 className="text-xl font-serif font-bold">
+        <Card className="backdrop-blur-xl bg-card/60 border-primary/20 p-4 sm:p-6 md:p-8">
+          <div className="flex items-start gap-2 mb-4 sm:mb-6 text-primary">
+            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 mt-1 flex-shrink-0" />
+            <h2 className="text-lg sm:text-xl font-serif font-bold">
               Este retrato da pessoa especial:
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-[300px_1fr] gap-8 mb-8">
+          <div className="grid md:grid-cols-[300px_1fr] gap-6 sm:gap-8 mb-6 sm:mb-8">
             <div className="relative">
               <div className={`aspect-square rounded-2xl overflow-hidden ${!isPaid ? 'filter blur-xl' : ''}`}>
                 <div className="w-full h-full bg-gradient-to-br from-primary/30 to-chart-2/30 flex items-center justify-center">
-                  <Heart className="w-32 h-32 text-primary/30" fill="currentColor" />
+                  <Heart className="w-24 h-24 sm:w-32 sm:h-32 text-primary/30" fill="currentColor" />
                 </div>
               </div>
               
               {!isPaid && (
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="bg-background/90 backdrop-blur-sm rounded-2xl p-6 text-center">
-                    <Lock className="w-12 h-12 mx-auto mb-2 text-primary" />
-                    <p className="text-sm font-medium">Imagem Bloqueada</p>
+                  <div className="bg-background/90 backdrop-blur-sm rounded-2xl p-4 sm:p-6 text-center">
+                    <Lock className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 text-primary" />
+                    <p className="text-xs sm:text-sm font-medium">Imagem Bloqueada</p>
                   </div>
                 </div>
               )}
@@ -117,7 +117,7 @@ export default function FinalResults({ sessionId, name, generatedProfile, isPaid
                 <Button 
                   size="sm" 
                   variant="outline" 
-                  className="w-full mt-4"
+                  className="w-full mt-3 sm:mt-4"
                   data-testid="button-download"
                 >
                   Baixar Imagem
@@ -231,7 +231,7 @@ export default function FinalResults({ sessionId, name, generatedProfile, isPaid
 
                 <div className="bg-card/80 backdrop-blur-sm rounded-xl p-6 text-center">
                   <div className="text-3xl font-bold text-primary mb-2">
-                    Desbloqueie por R$9,90
+                    Desbloqueie por R$50,00
                   </div>
                   <Button 
                     onClick={onUnlock}

@@ -194,7 +194,7 @@ function App() {
 
     try {
       const response = await apiRequest("POST", `/api/sessions/${sessionData.id}/create-payment`, {
-        amount: 24.97,
+        amount: 50.00,
       });
       const paymentData = await response.json();
       
@@ -306,7 +306,7 @@ function App() {
             qrCode={sessionData.paymentData.qrCode}
             qrCodeBase64={sessionData.paymentData.qrCodeBase64}
             pixCode={sessionData.paymentData.pixCode}
-            amount={24.97}
+            amount={50.00}
             onPaymentConfirmed={handlePaymentConfirmed}
           />
         )}

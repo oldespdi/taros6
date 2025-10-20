@@ -200,6 +200,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       console.log(`Creating payment for amount: ${amount}`);
       
+      const webhookUrl = `https://${process.env.REPLIT_DEV_DOMAIN}/api/webhooks/pushinpay`;
+      console.log(`Webhook URL: ${webhookUrl}`);
+      
       const response = await fetch(`${PUSHINPAY_API_URL}/pix/cashIn`, {
         method: "POST",
         headers: {
@@ -208,8 +211,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           "Accept": "application/json",
         },
         body: JSON.stringify({
-          value: amount,
-          webhook_url: `${process.env.REPLIT_DEV_DOMAIN}/api/webhooks/pushinpay`,
+          value: Number(amount),
+          webhook_url: webhookUrl,
         }),
       });
 

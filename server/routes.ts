@@ -175,7 +175,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/sessions/:id/create-payment", async (req, res) => {
     try {
       const { amount } = req.body;
-      const amountInCents = Math.round(amount * 100);
 
       if (!process.env.PUSHINPAY_TOKEN) {
         console.log("Using test mode for payments (no PUSHINPAY_TOKEN)");
@@ -199,6 +198,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
+      console.log(`Creating payment for amount: ${amount}`);
+      
       const response = await fetch(`${PUSHINPAY_API_URL}/pix/cashIn`, {
         method: "POST",
         headers: {
@@ -206,26 +207,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          value: amountInCents,
+          value: amount,
           webhook_url: `${process.env.REPLIT_DEV_DOMAIN}/api/webhooks/pushinpay`,
         }),
       });
 
       if (!response.ok) {
         const errorData = await response.text();
-        console.error("Pushin Pay error:", errorData);
-        return res.status(500).json({ message: "Error creating PIX payment" });
+        console.error("Pushin Pay API error:", {
+          status: response.status,
+          statusText: response.statusText,
+          error: errorData
+        });
+        return res.status(500).json({ 
+          message: "Erro ao criar pagamento PIX. Verifique se o token da Pushin Pay está correto." 
+        });
       }
 
       const paymentData = await response.json();
+      console.log("Payment created successfully:", paymentData.id);
 
       await storage.updateSessionPayment(req.params.id, paymentData.id, false);
 
       res.json({
         id: paymentData.id,
-        qr_code: paymentData.pix_details?.emv || paymentData.qr_code,
+        qr_code: paymentData.qr_code,
         qr_code_base64: paymentData.qr_code_base64,
-        emv: paymentData.pix_details?.emv,
+        emv: paymentData.qr_code,
       });
     } catch (error: any) {
       console.error("Payment creation error:", error);

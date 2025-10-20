@@ -255,6 +255,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.post("/api/sessions/:id/simulate-payment", async (req, res) => {
+    try {
+      const session = await storage.getSession(req.params.id);
+      
+      if (!session) {
+        return res.status(404).json({ message: "Session not found" });
+      }
+
+      const paymentId = session.paymentId || `simulated-${randomUUID()}`;
+      await storage.updateSessionPayment(req.params.id, paymentId, true);
+      console.log(`Payment simulated and confirmed for session ${req.params.id}`);
+
+      res.json({ success: true, isPaid: true });
+    } catch (error: any) {
+      res.status(500).json({ message: "Error simulating payment: " + error.message });
+    }
+  });
+
   app.post("/api/webhooks/pushinpay", async (req, res) => {
     try {
       console.log("Pushin Pay webhook received:", req.body);
